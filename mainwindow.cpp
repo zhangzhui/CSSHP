@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , timer_(new QTimer)
+    , system_on_(false)
 {
     ui->setupUi(this);
     ConfigureAlarmList();
@@ -73,25 +74,25 @@ void MainWindow::ConfigureTracer()
 
 void MainWindow::ConfigureAlarmList()
 {
-    ui->welcome_alarm_table->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-    ui->welcome_alarm_table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->welcome_alarm_table->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
+    ui->welcome_alarm_table->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->welcome_alarm_table->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->welcome_alarm_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     int rowCount = ui->welcome_alarm_table->rowCount();
     ui->welcome_alarm_table->insertRow(rowCount);
-    ui->welcome_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QStringLiteral("2021/3/11 15:17")));
-    ui->welcome_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QStringLiteral("这是一条报警内容")));
-    ui->welcome_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QStringLiteral("1.0")));
+    ui->welcome_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QString::fromUtf8("2021/3/11 15:17")));
+    ui->welcome_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QString::fromUtf8("这是一条报警内容")));
+    ui->welcome_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QString::fromUtf8("1.0")));
 
-    ui->history_alarm_table->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-    ui->history_alarm_table->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->history_alarm_table->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
+    ui->history_alarm_table->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
     ui->history_alarm_table->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->history_alarm_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     rowCount = ui->history_alarm_table->rowCount();
     ui->history_alarm_table->insertRow(rowCount);
-    ui->history_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QStringLiteral("2021/3/11 15:17")));
-    ui->history_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QStringLiteral("这是一条报警内容")));
-    ui->history_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QStringLiteral("1.0")));
+    ui->history_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QString::fromUtf8("2021/3/11 15:17")));
+    ui->history_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QString::fromUtf8("这是一条报警内容")));
+    ui->history_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QString::fromUtf8("1.0")));
 }
 
 void MainWindow::StartTimer()
@@ -142,10 +143,10 @@ void MainWindow::on_param_prev_clicked()
 
 void MainWindow::onTimeOut()
 {
-    if (ui->plot->graph() == nullptr)
+    if (ui->plot->graph() == 0)
     {
         ui->plot->addGraph();
-        ui->plot->graph()->setLineStyle(QCPGraph::LineStyle::lsLine);
+        ui->plot->graph()->setLineStyle(QCPGraph::lsLine);
     }
 
     double x = QDateTime::currentDateTime().toTime_t();
@@ -222,4 +223,12 @@ void MainWindow::plotMouseMove(QMouseEvent *)
     tracer_->setGraph(ui->plot->graph());
     ui->plot->replot();
     */
+}
+
+void MainWindow::on_welcom_on_off_clicked()
+{
+    QIcon icon;
+    icon.addFile(QString::fromUtf8(system_on_ ? ":/png/assets/png/kai.png" : ":/png/assets/png/guan.png"), QSize(), QIcon::Normal, QIcon::Off);
+    ui->welcom_on_off->setIcon(icon);
+    system_on_ = !system_on_;
 }

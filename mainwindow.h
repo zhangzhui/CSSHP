@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private:
@@ -39,10 +39,12 @@ private slots:
     void xAxisChanged(QCPRange);
     void plotMouseMove(QMouseEvent*);
 
+    void on_welcom_on_off_clicked();
+
 private:
     Ui::MainWindow *ui;
-    bool system_on_ = true;
     QTimer *timer_;
+    bool system_on_;
     QCPItemTracer *tracer_;
 };
 #endif // MAINWINDOW_H

@@ -39,7 +39,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_welcome">
        <property name="sizePolicy">
@@ -791,7 +791,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="welcom_on_off">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -1321,13 +1321,16 @@
              <property name="styleSheet">
               <string notr="true">border:none</string>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_26" stretch="20,13,20,13,20,13">
+             <layout class="QHBoxLayout" name="horizontalLayout_26" stretch="0,20,13,20,13,20,13">
               <property name="topMargin">
                <number>2</number>
               </property>
               <property name="bottomMargin">
                <number>2</number>
               </property>
+              <item>
+               <layout class="QFormLayout" name="formLayout"/>
+              </item>
               <item>
                <widget class="QLabel" name="label_78">
                 <property name="styleSheet">
