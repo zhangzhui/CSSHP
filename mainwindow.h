@@ -33,6 +33,7 @@ private slots:
     void on_history_next_clicked();
     void on_param_prev_clicked();
     void onTimeOut();
+    void onShijianTimeout();
     void horzScrollBarPressed();
     void horzScrollBarMoved(int);
     void horzScrollBarReleased();
@@ -44,6 +45,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QTimer *timer_;
+    QTimer *timer_shijian_;
     bool system_on_;
     QCPItemTracer *tracer_;
 };

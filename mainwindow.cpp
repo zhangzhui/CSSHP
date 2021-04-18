@@ -1,5 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "easylogging++.h"
 
 enum {
     PAGE_WELCOME,
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , timer_(new QTimer)
+    , timer_shijian_(new QTimer)
     , system_on_(false)
 {
     ui->setupUi(this);
@@ -80,9 +82,9 @@ void MainWindow::ConfigureAlarmList()
     ui->welcome_alarm_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     int rowCount = ui->welcome_alarm_table->rowCount();
     ui->welcome_alarm_table->insertRow(rowCount);
-    ui->welcome_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QString::fromUtf8("2021/3/11 15:17")));
-    ui->welcome_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QString::fromUtf8("这是一条报警内容")));
-    ui->welcome_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QString::fromUtf8("1.0")));
+    ui->welcome_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QString::fromStdWString(L"2021/3/11 15:17")));
+    ui->welcome_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QString::fromStdWString(L"这是一条报警内容")));
+    ui->welcome_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QString::fromStdWString(L"1.0")));
 
     ui->history_alarm_table->horizontalHeader()->setResizeMode(0, QHeaderView::ResizeToContents);
     ui->history_alarm_table->horizontalHeader()->setResizeMode(1, QHeaderView::Stretch);
@@ -90,9 +92,9 @@ void MainWindow::ConfigureAlarmList()
     ui->history_alarm_table->setEditTriggers(QAbstractItemView::NoEditTriggers);
     rowCount = ui->history_alarm_table->rowCount();
     ui->history_alarm_table->insertRow(rowCount);
-    ui->history_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QString::fromUtf8("2021/3/11 15:17")));
-    ui->history_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QString::fromUtf8("这是一条报警内容")));
-    ui->history_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QString::fromUtf8("1.0")));
+    ui->history_alarm_table->setItem(rowCount, 0, new QTableWidgetItem(QString::fromStdWString(L"2021/3/11 15:17")));
+    ui->history_alarm_table->setItem(rowCount, 1, new QTableWidgetItem(QString::fromStdWString(L"这是一条报警内容")));
+    ui->history_alarm_table->setItem(rowCount, 2, new QTableWidgetItem(QString::fromStdWString(L"1.0")));
 }
 
 void MainWindow::StartTimer()
@@ -100,6 +102,10 @@ void MainWindow::StartTimer()
     timer_->setInterval(1000);
     connect(timer_, SIGNAL(timeout()), this, SLOT(onTimeOut()));
     timer_->start();
+
+    timer_shijian_->setInterval(1000);
+    connect(timer_shijian_, SIGNAL(timeout()), this, SLOT(onShijianTimeout()));
+    timer_shijian_->start();
 }
 
 void MainWindow::BuildSignalSlot()
@@ -174,6 +180,15 @@ void MainWindow::onTimeOut()
     }
 }
 
+void MainWindow::onShijianTimeout()
+{
+    QDateTime currentTime = QDateTime::currentDateTime();
+    QString strTime = currentTime.toString("yyyy-MM-dd hh:mm:ss");
+    ui->welcom_time->setText(strTime);
+    ui->realtime_time->setText(strTime);
+    ui->history_time->setText(strTime);
+}
+
 void MainWindow::horzScrollBarPressed()
 {
     ui->checkBox_auto->setChecked(false);
@@ -227,6 +242,7 @@ void MainWindow::plotMouseMove(QMouseEvent *)
 
 void MainWindow::on_welcom_on_off_clicked()
 {
+    LINFO << "on_off button click: " << system_on_;
     QIcon icon;
     icon.addFile(QString::fromUtf8(system_on_ ? ":/png/assets/png/kai.png" : ":/png/assets/png/guan.png"), QSize(), QIcon::Normal, QIcon::Off);
     ui->welcom_on_off->setIcon(icon);

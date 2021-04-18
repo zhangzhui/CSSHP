@@ -213,7 +213,14 @@
                <number>0</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_5">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>当前时间：</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="welcom_time">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -227,7 +234,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>当前时间：YY-MM--DD hh::mm::ss</string>
+                 <string>YY-MM-DD hh:mm:ss</string>
                 </property>
                </widget>
               </item>
@@ -956,11 +963,48 @@
            </property>
            <item>
             <widget class="QWidget" name="widget_2" native="true">
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,1">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QLabel" name="label_14">
+               <widget class="QLabel" name="label_16">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>当前时间：</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="realtime_time">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -972,7 +1016,10 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>当前时间：YY-MM--DD hh::mm::ss</string>
+                 <string>YY-MM-DD hh:mm:ss</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -1271,7 +1318,14 @@
                <number>0</number>
               </property>
               <item>
-               <widget class="QLabel" name="label_77">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>当前时间：</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="history_time">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                   <horstretch>0</horstretch>
@@ -1285,7 +1339,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>当前时间：YY-MM--DD hh::mm::ss</string>
+                 <string>YY-MM-DD hh:mm:ss</string>
                 </property>
                </widget>
               </item>
