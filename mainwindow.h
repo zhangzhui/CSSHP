@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "qcustomplot.h"
+#include "transducer/transducer_thread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,10 @@ private:
     void StartTimer();
     void BuildSignalSlot();
 
+private:
+    void StartWorker();
+    void ChangeOnOffBtnIcon();
+
 private slots:
     void on_welcome_next_clicked();
     void on_realtime_prev_clicked();
@@ -39,8 +44,13 @@ private slots:
     void horzScrollBarReleased();
     void xAxisChanged(QCPRange);
     void plotMouseMove(QMouseEvent*);
-
     void on_welcom_on_off_clicked();
+    // transducer
+    void OnTransducerOnOff(bool off);
+
+signals:
+    void StartTransducer();
+    void StopTransducer();
 
 private:
     Ui::MainWindow *ui;
@@ -48,5 +58,6 @@ private:
     QTimer *timer_shijian_;
     bool system_on_;
     QCPItemTracer *tracer_;
+    TransducerThread t_thread_;
 };
 #endif // MAINWINDOW_H

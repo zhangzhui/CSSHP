@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "easylogging++.h"
+#include "transducer/transducer_manager.h"
 
 enum {
     PAGE_WELCOME,
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     ConfigureScrollBar(now);
     StartTimer();
     BuildSignalSlot();
+    StartWorker();
 }
 
 MainWindow::~MainWindow()
@@ -116,6 +118,16 @@ void MainWindow::BuildSignalSlot()
     connect(ui->horizontalScrollBar, SIGNAL(sliderReleased()), this, SLOT(horzScrollBarReleased()));
     //connect(ui->plot->xAxis, SIGNAL(rangeChanged(QCPRange)), this, SLOT(xAxisChanged(QCPRange)));
     connect(ui->plot, SIGNAL(mouseMove(QMouseEvent*)), this, SLOT(plotMouseMove(QMouseEvent*)));
+}
+
+void MainWindow::StartWorker() {
+    TransducerManager::Instance()->Init();
+    TransducerManager::Instance()->moveToThread(&t_thread_);
+    connect(TransducerManager::Instance(), SIGNAL(TransducerOnOff(bool)), this, SLOT(OnTransducerOnOff(bool)));
+    connect(this, SIGNAL(StartTransducer()), TransducerManager::Instance(), SLOT(OnStartTransducer()));
+    connect(this, SIGNAL(StopTransducer()), TransducerManager::Instance(), SLOT(OnStopTransducer()));
+
+    t_thread_.start();
 }
 
 void MainWindow::on_welcome_next_clicked()
@@ -244,8 +256,24 @@ void MainWindow::plotMouseMove(QMouseEvent *)
 void MainWindow::on_welcom_on_off_clicked()
 {
     LINFO << "on_off button click: " << system_on_;
+    system_on_ = !system_on_;
+    ChangeOnOffBtnIcon();
+
+    if (system_on_) {
+        emit StartTransducer();
+    } else {
+        emit StopTransducer();
+    }
+}
+
+void MainWindow::OnTransducerOnOff(bool off) {
+    LINFO << "on transducer state: " << off;
+    system_on_ = off;
+    ChangeOnOffBtnIcon();
+}
+
+void MainWindow::ChangeOnOffBtnIcon() {
     QIcon icon;
     icon.addFile(QString::fromUtf8(system_on_ ? ":/png/assets/png/kai.png" : ":/png/assets/png/guan.png"), QSize(), QIcon::Normal, QIcon::Off);
     ui->welcom_on_off->setIcon(icon);
-    system_on_ = !system_on_;
 }

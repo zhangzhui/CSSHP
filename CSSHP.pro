@@ -14,12 +14,23 @@ DEFINES += _ELPP_QT_LOGGING \
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    common/modbus_utils.cpp \
+    transducer/transducer_manager.cpp \
+    transducer/transducer_thread.cpp \
     qcustomplot.cpp
 
 HEADERS += \
     mainwindow.h \
+    common/modbus_utils.h \
+    transducer/transducer_manager.h \
+    transducer/transducer_thread.h \
     qcustomplot.h \
     easylogging++.h
+
+win32:INCLUDEPATH += $$PWD/thirdparty/modbus/modbus-x86/include
+win32:LIBS += -L$$PWD/thirdparty/modbus/modbus-x86/lib -lmodbus
+unix:INCLUDEPATH += $$PWD/thirdparty/modbus/modbus-arm/include
+unix:LIBS += -L$$PWD/thirdparty/modbus/modbus-arm/lib -lmodbus
 
 FORMS += \
     mainwindow.ui
