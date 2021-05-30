@@ -270,7 +270,7 @@ void MainWindow::on_welcom_on_off_clicked()
 
 void MainWindow::OnTransducerOnOff(bool off) {
     LINFO << QThread::currentThreadId() << "on transducer state off: " << off;
-    system_on_ = off;
+    system_on_ = !off;
     ChangeOnOffBtnIcon();
 }
 
