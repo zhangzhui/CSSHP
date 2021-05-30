@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     , system_on_(false)
 {
     ui->setupUi(this);
+    setWindowState(Qt::WindowMaximized);
     ConfigureAlarmList();
     HideButtons();
     double now = QDateTime::currentDateTime().toTime_t();
