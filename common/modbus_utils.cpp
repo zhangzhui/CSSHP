@@ -2,6 +2,7 @@
 #include "modbus_utils.h"
 #include "easylogging++.h"
 #include <errno.h>
+#include <QThread>
 
 modbus_t* modbus_create(const char *device, int baud, char parity, int data_bit, int stop_bit, int slave) {
     modbus_t *ctx = NULL;

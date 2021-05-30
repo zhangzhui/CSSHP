@@ -1,6 +1,7 @@
 #include "transducer_manager.h"
 #include "common/modbus_utils.h"
 #include "easylogging++.h"
+#include <QThread>
 
 const int slave = 2;
 const char *device = "/dev/ttyO2";
