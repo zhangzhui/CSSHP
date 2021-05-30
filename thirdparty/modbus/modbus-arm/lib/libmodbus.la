@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/sinc/modbus-arm/lib'
+libdir='/home/sinc/libmodbus/arm_install/lib'
