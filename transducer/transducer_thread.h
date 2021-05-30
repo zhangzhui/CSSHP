@@ -6,6 +6,6 @@ public:
     TransducerThread();
     ~TransducerThread();
 protected:
-    virtual void run() override;
+    virtual void run();
 };
 #endif
