@@ -126,7 +126,8 @@ void MainWindow::StartWorker() {
     connect(TransducerManager::Instance(), SIGNAL(TransducerOnOff(bool)), this, SLOT(OnTransducerOnOff(bool)));
     connect(this, SIGNAL(StartTransducer()), TransducerManager::Instance(), SLOT(OnStartTransducer()));
     connect(this, SIGNAL(StopTransducer()), TransducerManager::Instance(), SLOT(OnStopTransducer()));
-    connect(this, SIGNAL(IncreaseTransducerFreq()), TransducerManager::Instance(), SLOT());
+    connect(this, SIGNAL(IncreaseTransducerFreq()), TransducerManager::Instance(), SLOT(OnIncreaseFreq()));
+    connect(this, SIGNAL(DecreaseTransducerFreq()), TransducerManager::Instance(), SLOT(OnDecreaseFreq()));
 
     t_thread_.start();
 }
@@ -256,7 +257,7 @@ void MainWindow::plotMouseMove(QMouseEvent *)
 
 void MainWindow::on_welcom_on_off_clicked()
 {
-    LINFO << "on_off button click: " << system_on_;
+    LINFO << QThread::currentThreadId() << "on_off button click: " << system_on_;
     system_on_ = !system_on_;
     ChangeOnOffBtnIcon();
 
@@ -268,7 +269,7 @@ void MainWindow::on_welcom_on_off_clicked()
 }
 
 void MainWindow::OnTransducerOnOff(bool off) {
-    LINFO << "on transducer state off: " << off;
+    LINFO << QThread::currentThreadId() << "on transducer state off: " << off;
     system_on_ = off;
     ChangeOnOffBtnIcon();
 }
@@ -281,12 +282,12 @@ void MainWindow::ChangeOnOffBtnIcon() {
 
 void MainWindow::on_btn_freq_up_clicked()
 {
-    LINFO << "freq up button click";
+    LINFO << QThread::currentThreadId() << "freq up button click";
     emit IncreaseTransducerFreq();
 }
 
 void MainWindow::on_btn_freq_down_clicked()
 {
-    LINFO << "freq down button click";
+    LINFO << QThread::currentThreadId() << "freq down button click";
     emit DecreaseTransducerFreq();
 }

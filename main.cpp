@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     easyloggingpp::Configurations confFromFile(exePath.toUtf8().data());
     easyloggingpp::Loggers::reconfigureAllLoggers(confFromFile);
 
-    LINFO << "start CSSHP";
+    LINFO << QThread::currentThreadId() << "-start CSSHP";
 
     MainWindow w;
     w.show();

@@ -3,16 +3,16 @@
 #include "easylogging++.h"
 
 TransducerThread::TransducerThread() {
-    LINFO << "transducer thread constructor";
+    LINFO << QThread::currentThreadId() << "transducer thread constructor";
 }
 
 TransducerThread::~TransducerThread() {
-    LINFO << "transducer thread ~destructor";
+    LINFO << QThread::currentThreadId() << "transducer thread ~destructor";
 }
 
 void TransducerThread::run() {
-    LINFO << "transducer thread start";
-    LINFO << "get transducer ON/OFF";
+    LINFO << QThread::currentThreadId() << "transducer thread start";
+    LINFO << QThread::currentThreadId() << "get transducer ON/OFF";
     TransducerManager::Instance()->QueryOnOff();
     QThread::exec();
 }
