@@ -7,10 +7,15 @@ _INITIALIZE_EASYLOGGINGPP
 
 int main(int argc, char *argv[])
 {
-    _START_EASYLOGGINGPP(argc, argv);
+    QApplication a(argc, argv);
+    // _START_EASYLOGGINGPP(argc, argv);
+    QString exePath = QCoreApplication::applicationDirPath();
+    exePath.append("/log.cfg");
+    easyloggingpp::Configurations confFromFile(exePath.toUtf8().data());
+    easyloggingpp::Loggers::reconfigureAllLoggers(confFromFile);
+
     LINFO << "start CSSHP";
 
-    QApplication a(argc, argv);
     MainWindow w;
     w.show();
     return a.exec();
