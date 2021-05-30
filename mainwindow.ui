@@ -60,7 +60,7 @@
        <property name="styleSheet">
         <string notr="true"/>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="5,5,35,40,15">
+       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="5,5,35,50,5">
         <property name="leftMargin">
          <number>0</number>
         </property>
@@ -714,8 +714,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -727,8 +727,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="autoRepeat">
@@ -765,8 +765,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -778,8 +778,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
@@ -807,8 +807,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -820,8 +820,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
@@ -846,8 +846,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -859,8 +859,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
@@ -891,8 +891,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -904,8 +904,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
@@ -1077,8 +1077,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -1090,8 +1090,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="autoRepeat">
@@ -1128,8 +1128,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -1141,8 +1141,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
@@ -1825,8 +1825,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -1838,8 +1838,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="autoRepeat">
@@ -1889,8 +1889,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -1902,8 +1902,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
@@ -2383,8 +2383,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -2396,8 +2396,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="autoRepeat">
@@ -2434,8 +2434,8 @@
              </property>
              <property name="minimumSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="text">
@@ -2447,8 +2447,8 @@
              </property>
              <property name="iconSize">
               <size>
-               <width>200</width>
-               <height>200</height>
+               <width>50</width>
+               <height>50</height>
               </size>
              </property>
              <property name="flat">
