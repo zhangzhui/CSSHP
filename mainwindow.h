@@ -45,12 +45,16 @@ private slots:
     void xAxisChanged(QCPRange);
     void plotMouseMove(QMouseEvent*);
     void on_welcom_on_off_clicked();
+    void on_btn_freq_up_clicked();
+    void on_btn_freq_down_clicked();
     // transducer
     void OnTransducerOnOff(bool off);
 
 signals:
     void StartTransducer();
     void StopTransducer();
+    void IncreaseTransducerFreq();
+    void DecreaseTransducerFreq();
 
 private:
     Ui::MainWindow *ui;

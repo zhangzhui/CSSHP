@@ -756,7 +756,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="btn_freq_up">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -816,7 +816,7 @@
              </property>
              <property name="icon">
               <iconset resource="CSSHP.qrc">
-               <normaloff>:/png/assets/png/kai.png</normaloff>:/png/assets/png/kai.png</iconset>
+               <normaloff>:/png/assets/png/guan.png</normaloff>:/png/assets/png/guan.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -837,7 +837,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="btn_freq_down">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>

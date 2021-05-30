@@ -32,18 +32,18 @@ void TransducerManager::Init() {
 
 void TransducerManager::QueryOnOff() {
     LINFO << "query transducer state.";
-    bool on_off = false;
+    bool off = false;
     modbus_t *ctx = modbus_create(device, baud, parity, dataBit, stopBit, slave);
     if (ctx != NULL) {
         int addr = 0x30 << 8 | 0x00;
         uint16_t value = 0;
         modbus_read_registers(ctx, addr, 1, &value);
         LINFO << "transducer state is: " << value;
-        on_off = value == 0x03;
+        off = value == 0x03;
     }
     modbus_destroy(ctx);
     LINFO << "query transducer state end.";
-    emit TransducerOnOff(on_off);
+    emit TransducerOnOff(off);
 }
 
 void TransducerManager::OnStartTransducer() {
@@ -96,4 +96,48 @@ void TransducerManager::OnStopTransducer() {
     }
     modbus_destroy(ctx);
     LINFO << "stop transducer end.";
+}
+
+void TransducerManager::OnIncreaseFreq() {
+    if (freq >= 10000 || freq < 0) {
+        LINFO << "invalid freq: " << freq;
+        return;
+    }
+
+    int from = freq;
+    freq += stride;
+    int to = freq;
+    LINFO << "increase freq, from " << from << " to " << to;
+    modbus_t *ctx = modbus_create(device, baud, parity, dataBit, stopBit, slave);
+    if (ctx != NULL) {
+        {
+            int addr = 0x10 << 8 | 0x00;
+            uint16_t value = to;
+            modbus_write_register(ctx, addr, value);
+        }
+    }
+    modbus_destroy(ctx);
+    LINFO << "increase freq end";
+}
+
+void TransducerManager::OnDecreaseFreq() {
+    if (freq >= 10000 || freq < 0) {
+        LINFO << "invalid freq: " << freq;
+        return;
+    }
+
+    int from = freq;
+    freq -= stride;
+    int to = freq;
+    LINFO << "decrease freq, from " << from << " to " << to;
+    modbus_t *ctx = modbus_create(device, baud, parity, dataBit, stopBit, slave);
+    if (ctx != NULL) {
+        {
+            int addr = 0x10 << 8 | 0x00;
+            uint16_t value = to;
+            modbus_write_register(ctx, addr, value);
+        }
+    }
+    modbus_destroy(ctx);
+    LINFO << "decrease freq end";
 }

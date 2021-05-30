@@ -20,5 +20,7 @@ signals:
 private slots:
     void OnStartTransducer();
     void OnStopTransducer();
+    void OnIncreaseFreq();
+    void OnDecreaseFreq();
 };
 #endif

@@ -126,6 +126,7 @@ void MainWindow::StartWorker() {
     connect(TransducerManager::Instance(), SIGNAL(TransducerOnOff(bool)), this, SLOT(OnTransducerOnOff(bool)));
     connect(this, SIGNAL(StartTransducer()), TransducerManager::Instance(), SLOT(OnStartTransducer()));
     connect(this, SIGNAL(StopTransducer()), TransducerManager::Instance(), SLOT(OnStopTransducer()));
+    connect(this, SIGNAL(IncreaseTransducerFreq()), TransducerManager::Instance(), SLOT());
 
     t_thread_.start();
 }
@@ -267,7 +268,7 @@ void MainWindow::on_welcom_on_off_clicked()
 }
 
 void MainWindow::OnTransducerOnOff(bool off) {
-    LINFO << "on transducer state: " << off;
+    LINFO << "on transducer state off: " << off;
     system_on_ = off;
     ChangeOnOffBtnIcon();
 }
@@ -276,4 +277,16 @@ void MainWindow::ChangeOnOffBtnIcon() {
     QIcon icon;
     icon.addFile(QString::fromUtf8(system_on_ ? ":/png/assets/png/kai.png" : ":/png/assets/png/guan.png"), QSize(), QIcon::Normal, QIcon::Off);
     ui->welcom_on_off->setIcon(icon);
+}
+
+void MainWindow::on_btn_freq_up_clicked()
+{
+    LINFO << "freq up button click";
+    emit IncreaseTransducerFreq();
+}
+
+void MainWindow::on_btn_freq_down_clicked()
+{
+    LINFO << "freq down button click";
+    emit DecreaseTransducerFreq();
 }
