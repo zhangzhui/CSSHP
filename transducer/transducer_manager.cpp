@@ -3,6 +3,7 @@
 #include "easylogging++.h"
 #include <QThread>
 
+namespace transducer {
 const int slave = 2;
 const char *device = "/dev/ttyO2";
 const int baud = 9600;
@@ -12,6 +13,9 @@ const int stopBit = 1;
 const int maxFreq = 10000; // 100%
 int freq = 3000; // 50Hz * 0.3 = 15Hz 3000 = 0.3 * 10000
 int stride = 200; // 1Hz
+}
+
+using namespace transducer;
 
 TransducerManager::TransducerManager() {
     LINFO << QThread::currentThreadId() << "transducer constructor";
