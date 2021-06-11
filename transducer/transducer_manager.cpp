@@ -9,7 +9,7 @@ const int baud = 9600;
 const char parity = 'N';
 const int dataBit = 8;
 const int stopBit = 1;
-int maxFreq = 10000; // 100%
+const int maxFreq = 10000; // 100%
 int freq = 3000; // 50Hz * 0.3 = 15Hz 3000 = 0.3 * 10000
 int stride = 200; // 1Hz
 
@@ -100,14 +100,19 @@ void TransducerManager::OnStopTransducer() {
 }
 
 void TransducerManager::OnIncreaseFreq() {
-    if (freq >= 10000 || freq < 0) {
+    if (freq >= 10000) {
         LINFO << QThread::currentThreadId() << "invalid freq: " << freq;
+        LINFO << QThread::currentThreadId() << "set freq to 10000.";
+        freq = maxFreq;
         return;
     }
 
     int from = freq;
     freq += stride;
     int to = freq;
+    if (to > maxFreq) {
+        to = maxFreq;
+    }
     LINFO << QThread::currentThreadId() << "increase freq, from " << from << " to " << to;
     modbus_t *ctx = modbus_create(device, baud, parity, dataBit, stopBit, slave);
     if (ctx != NULL) {
@@ -122,14 +127,19 @@ void TransducerManager::OnIncreaseFreq() {
 }
 
 void TransducerManager::OnDecreaseFreq() {
-    if (freq >= 10000 || freq < 0) {
+    if (freq <= 0) {
         LINFO << QThread::currentThreadId() << "invalid freq: " << freq;
+        LINFO << QThread::currentThreadId() << "clear freq to 0.";
+        freq = 0;
         return;
     }
 
     int from = freq;
     freq -= stride;
     int to = freq;
+    if (to < 0) {
+        to = 0;
+    }
     LINFO << QThread::currentThreadId() << "decrease freq, from " << from << " to " << to;
     modbus_t *ctx = modbus_create(device, baud, parity, dataBit, stopBit, slave);
     if (ctx != NULL) {
