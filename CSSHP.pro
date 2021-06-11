@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     common/modbus_utils.cpp \
+    langyu/langyu_thread.cpp \
     transducer/transducer_manager.cpp \
     transducer/transducer_thread.cpp \
     qcustomplot.cpp
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     common/modbus_utils.h \
+    langyu/langyu_thread.h \
     transducer/transducer_manager.h \
     transducer/transducer_thread.h \
     qcustomplot.h \
